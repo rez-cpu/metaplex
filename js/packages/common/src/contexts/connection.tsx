@@ -66,7 +66,16 @@ export const ENDPOINTS = [
   },
 ];
 
-const DEFAULT = ENDPOINTS[0].endpoint;
+// const DEFAULT = ENDPOINTS[0].endpoint;
+let DEFAULT;
+if (process.env.NODE_ENV !== 'production') {
+  // SET TO 0 for mainnet 4 for devnet
+  DEFAULT = ENDPOINTS[4].endpoint;
+  console.log('--->> loading devnet');
+} else {
+  console.log('----->> connected to mainnet-beta');
+  DEFAULT = ENDPOINTS[0].endpoint;
+}
 
 interface ConnectionConfig {
   connection: Connection;
